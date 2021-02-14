@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3</title>
+</head>
+<body>
+<script>
+    Promise.all([
+        fetch('https://reqres.in/api/users?per_page=12'),
+        fetch('https://api.coingecko.com/api/v3/ping')
+    ]).then(
+        results => console.log('оба ответа получены'),
+    ).catch((e) => {
+        console.log(e.message)
+    })
+</script>
+</body>
+</html>

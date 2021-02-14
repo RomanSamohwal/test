@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Domain 2</title>
+</head>
+<body>
+<h2>Domain 2</h2>
+<script>
+    window.onmessage = function (e) {
+        if (e.origin !== "http://localhost:63342/domen1/src/4/domain2.html?_ijt=e2hs5761e646irej9a0tgv6uuf") {
+            return;
+        }
+        let payload = JSON.parse(e.data);
+        switch (payload.method) {
+            case 'set':
+                localStorage.setItem(payload.key, JSON.stringify(payload.data));
+                console.log('written')
+                break;
+            case 'get':
+                let parent = window.parent;
+                let data = localStorage.getItem(payload.key);
+                parent.postMessage(data, "*");
+                break;
+            case 'remove':
+                localStorage.removeItem(payload.key);
+                console.log('removed')
+                break;
+        }
+    };
+    window.addEventListener('message', function (message) {
+        let parseData = JSON.parse(message.data)
+        switch (parseData.method) {
+            case 'set' :
+                alert(parseData.method)
+                break
+            case 'get' :
+                alert(parseData.method)
+                break
+            case 'remove' :
+                alert(parseData.method)
+                break
+        }
+    })
+</script>
+</body>
+</html>

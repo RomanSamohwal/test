@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Domain 1</title>
+</head>
+<body>
+<h1>Domain 1</h1>
+
+<iframe src="http://localhost:63342/domen1/src/4/domain2.html?_ijt=e2hs5761e646irej9a0tgv6uuf"
+        style="height:60px"></iframe>
+<script>
+    window.onload = function () {
+        let iframe = document.getElementsByTagName('iframe')[0];
+        let win;
+        try {
+            win = iframe.contentWindow;
+        } catch (e) {
+            win = iframe.contentWindow;
+        }
+        let obj = {
+            name: "Roman"
+        };
+
+        win.postMessage(JSON.stringify({key: 'storage', method: "set", data: obj}), "*");
+        window.onmessage = function (e) {
+            if (e.origin !== "http://localhost:63342/domen1/src/4/domain2.html?_ijt=e2hs5761e646irej9a0tgv6uuf") {
+                return;
+            }
+            console.log(JSON.parse(e.data).name);
+        };
+        win.postMessage(JSON.stringify({key: 'storage', method: "get"}), "*");
+        win.postMessage(JSON.stringify({key: 'storage', method: "remove"}), "*");
+    };
+</script>
+</body>
+</html>

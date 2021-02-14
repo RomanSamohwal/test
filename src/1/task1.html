@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+</head>
+
+<body>
+     <style>.red {color: red;}</style>
+     <input type="text" name="name" id="name_input" value="Xxxx">
+</body>
+<script>
+     let name_input = document.getElementById("name_input")
+     console.log(name_input)
+     name_input.addEventListener('input', function() {
+        const isChanged = this.value !== this.getAttribute('value');
+        this.classList.toggle('red', isChanged);
+    });
+</script>
+
+</html>
