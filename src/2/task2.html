@@ -32,7 +32,6 @@
     </fieldset>
 </form>
 <script>
-    // const search = new URLSearchParams(location.search); // на самом деле нужно это, но для теста строка ниже
     const search = new URLSearchParams("size=M&color=1&color=2&manufacturer=aaa&manufacturer=eee");
     for(const [key, value] of search) {
         const e = document.querySelector("form").elements[key];
